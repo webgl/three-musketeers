@@ -1,0 +1,8 @@
+- Update documentation for better module encapsulation
+- Update all tests to be able to do a single `beforeEach` globally rather than within each test
+- More rigorous coordinate transformations testing within the `utils`
+- Add node hover functionality
+- Add node drag functionality
+- Add boundary box visuals when selecting an item (e.g. DOM inspector)
+- Tree representation of scene
+- Mimic DOM debugging tools within a chrome extension

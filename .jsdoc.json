@@ -1,0 +1,36 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": [
+      "jsdoc"
+    ]
+  },
+  "source": {
+    "include": [
+      "src",
+      "README.md"
+    ],
+    "includePattern": ".js$",
+    "excludePattern": "(node_modules/|docs|__example__)"
+  },
+  "plugins": [
+    "plugins/markdown"
+  ],
+  "templates": {
+    "referenceTitle": "Three Musketeers",
+    "cleverLinks": true,
+    "monospaceLinks": false,
+    "disableSort": true
+  },
+  "opts": {
+    "destination": "docs/",
+    "encoding": "utf8",
+    "private": true,
+    "recurse": true,
+    "template": "node_modules/docdash"
+  },
+  "docdash": {
+    "static": true,
+    "sort": true
+  }
+}

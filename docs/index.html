@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Home - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-click.html">click</a></li><li><a href="module-debug.html">debug</a></li><li><a href="module-exists.html">exists</a></li><li><a href="module-find.html">find</a></li><li><a href="module-findAll.html">findAll</a></li><li><a href="module-getResource.html">getResource</a></li><li><a href="module-hasChildren.html">hasChildren</a></li><li><a href="module-instance.html">instance</a></li><li><a href="module-isValid.html">isValid</a></li><li><a href="module-nodeComponents.html">nodeComponents</a></li><li><a href="module-off.html">off</a></li><li><a href="module-on.html">on</a></li><li><a href="module-pickFromEvent.html">pickFromEvent</a></li><li><a href="module-rootComponents.html">rootComponents</a></li><li><a href="module-setResource.html">setResource</a></li><li><a href="module-simulate.html">simulate</a></li><li><a href="module-trigger.html">trigger</a></li></ul>
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+    <section class="readme">
+        <article><h1><a href="https://webgl.github.io/three-musketeers">three musketeers</a></h1><p><a href="https://travis-ci.org/webgl/three-musketeers"><img src="https://travis-ci.org/webgl/three-musketeers.svg?branch=master" alt="Build Status"></a>
+<a href="https://www.npmjs.com/package/three-musketeers"><img src="https://img.shields.io/npm/v/three-musketeers.svg" alt="npm"></a></p>
+<p><img width=200 src="https://raw.githubusercontent.com/webgl/three-musketeers/master/public/logo.png" /></p>
+<blockquote>
+<p>&quot;All for one. One for all.&quot;</p>
+</blockquote>
+<p>This module serves as an intuitive tool to introspect, debug and test any THREE.js application.</p>
+<p><a href="https://github.com/webgl/three-musketeers">GitHub</a> &mdash;
+<a href="https://webgl.github.io/three-musketeers">Documentation</a> &mdash;
+<a href="https://github.com/webgl/three-musketeers/tree/master/src/__example__">Examples</a></p>
+<h3>Usage</h3><p>Download the <a href="https://github.com/webgl/three-musketeers/blob/master/build/three-musketeers.min.js">minified library</a> and include it in your HTML, or install and import it as a <a href="https://www.npmjs.com/package/three-musketeers">npm module</a>.</p>
+<pre class="prettyprint source lang-bash"><code>$ npm i three-musketeers</code></pre><p>The code below creates a scene, a camera, and a geometric cube, and it adds the cube to the scene. It then creates a <code>WebGL</code> renderer for the scene and camera, and it adds that viewport to the document.body element. Finally, it animates the cube within the scene for the camera.</p>
+<p>Lastly, we simply pass the necessary resources to the musketeers instance and attach it to our <code>window</code> via the alias <code>$$$</code> for experimentation:</p>
+<pre class="prettyprint source lang-javascript"><code>// sample application
+import musketeers from 'three-musketeers';
+
+init();
+
+function init() {
+  const { innerWidth, innerHeight } = window;
+  const camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.01, 10);
+  camera.position.z = 1;
+
+  const scene = new THREE.Scene();
+
+  const mesh = new THREE.Mesh(
+    new THREE.BoxGeometry(0.2, 0.2, 0.2),
+    new THREE.MeshBasicMaterial({ color: 0xFF0000 })
+  );
+  mesh.name = 'CUBE_1'; // assign a name to our mesh
+  scene.add(mesh);
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(innerWidth, innerHeight);
+  document.body.appendChild(renderer.domElement);
+
+  renderer.render(scene, camera);
+
+  // attach $$$ to the window for browser debugging
+  window.$$$ = musketeers({
+    renderer,
+    scene,
+    camera
+  });
+}</code></pre><p>Now, you can inspect the scene through the <code>window</code> object:</p>
+<pre class="prettyprint source lang-javascript"><code>// javascript console in the browser
+
+$$$
+.debug() // enable visual debug mode
+.isValid(); // true</code></pre><pre class="prettyprint source lang-javascript"><code>$$$
+.find('Cube_1')
+.exists(); // true</code></pre><pre class="prettyprint source lang-javascript"><code>$$$
+.findAll((node) => node.geometry.type === 'BoxGeometry') // returns an array of items of this type</code></pre><pre class="prettyprint source lang-javascript"><code>$$$
+.find('Cube_1')
+.click(); // locates the item in the 3D scene and clicks the item</code></pre><pre class="prettyprint source lang-javascript"><code>window.addEventListener('click', (event) => {
+  // find all intersected items on 'click'
+  const intersectedItems = $$$.pickFromEvent(event);
+  console.log(intersectedItems); // useful for debugging
+});</code></pre><p>Check out the <a href="https://webgl.github.io/three-musketeers">documentation</a> for more details. You can also check out the <a href="https://github.com/webgl/three-musketeers/tree/master/src/__example__">example</a> testing a 3D application with selenium.</p>
+<pre class="prettyprint source lang-bash"><code># running and testing the example 3d application
+
+$ npm run selenium
+$ npm run start
+$ npm run test:e2e</code></pre><h2>Contribute</h2><p>I welcome contributors. Please contribute if you have ideas to improve this library. Please use GitHub's pull request and issues features. You can also help implement upcoming features from the <a href="https://github.com/webgl/three-musketeers/blob/master/TODOS.md">TODO</a> page. Feel free to reach out if you'd like more context or info for implementation details.</p>
+<p>Here are a few scripts to help you get started:</p>
+<table>
+<thead>
+<tr>
+<th>NPM Commands</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>start</code></td>
+<td>Runs the examples for development</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>Runs unit tests for the module</td>
+</tr>
+<tr>
+<td><code>build</code></td>
+<td>Builds the module</td>
+</tr>
+<tr>
+<td><code>docs</code></td>
+<td>Updates the documentation</td>
+</tr>
+<tr>
+<td><code>components</code></td>
+<td>Updates the component entry points</td>
+</tr>
+<tr>
+<td><code>selenium</code></td>
+<td>Runs selenium</td>
+</tr>
+<tr>
+<td><code>test:e2e</code></td>
+<td>Runs e2e automated testing for the examples as an example</td>
+</tr>
+</tbody>
+</table>
+<h2>Other Resources</h2><p><a href="http://stackoverflow.com/questions/tagged/three.js">Three.js Questions</a> &mdash;
+<a href="https://discourse.threejs.org/">Three.js Forum</a> &mdash;
+<a href="https://gitter.im/mrdoob/three.js">Three.js Gitter</a> &mdash;
+<a href="https://threejs-slack.herokuapp.com/">Three.js Slack</a></p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jun 13 2018 17:58:43 GMT-0600 (Mountain Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
