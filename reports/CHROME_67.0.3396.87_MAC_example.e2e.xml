@@ -5,29 +5,29 @@
 
   <testsuite name="example.e2e"
     errors="0" failures="0" hostname="" id="" package="example.e2e" skipped="0"
-    tests="5" time="6.742" timestamp="Thu, 14 Jun 2018 14:19:50 GMT">
+    tests="5" time="5.410" timestamp="Thu, 14 Jun 2018 20:40:44 GMT">
   
-    <testcase name="25 boxes exist" classname="example.e2e" time="4.193" assertions="1">
+    <testcase name="25 boxes exist" classname="example.e2e" time="2.934" assertions="1">
 
     
     </testcase>
   
-    <testcase name="All boxes are toggled to &#34;isSelected&#34; being &#34;true&#34; after being clicked" classname="example.e2e" time="0.5370" assertions="1">
+    <testcase name="All boxes are toggled to &#34;isSelected&#34; being &#34;true&#34; after being clicked" classname="example.e2e" time="0.5280" assertions="1">
 
     
     </testcase>
   
-    <testcase name="All boxes are toggled to &#34;isSelected&#34; being &#34;false&#34; after being clicked" classname="example.e2e" time="0.9650" assertions="1">
+    <testcase name="All boxes are toggled to &#34;isSelected&#34; being &#34;false&#34; after being clicked" classname="example.e2e" time="0.9080" assertions="1">
 
     
     </testcase>
   
-    <testcase name="All unselected boxes scale up when they are clicked" classname="example.e2e" time="0.5200" assertions="1">
+    <testcase name="All unselected boxes scale up when they are clicked" classname="example.e2e" time="0.5170" assertions="1">
 
     
     </testcase>
   
-    <testcase name="All selected boxes scale down to original scale when they are clicked" classname="example.e2e" time="0.5270" assertions="1">
+    <testcase name="All selected boxes scale down to original scale when they are clicked" classname="example.e2e" time="0.5230" assertions="1">
 
     
     </testcase>

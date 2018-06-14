@@ -12,7 +12,9 @@ This module serves as an intuitive tool to introspect, debug and test any THREE.
 [Documentation](https://webgl.github.io/three-musketeers) &mdash;
 [Examples](https://github.com/webgl/three-musketeers/tree/master/src/__example__)
 
-### Usage ###
+## Demo
+
+## Usage
 
 Download the [minified library](https://github.com/webgl/three-musketeers/blob/master/build/three-musketeers.min.js) and include it in your HTML, or install and import it as a [npm module](https://www.npmjs.com/package/three-musketeers).
 
@@ -41,7 +43,8 @@ function init() {
     new THREE.BoxGeometry(0.2, 0.2, 0.2),
     new THREE.MeshBasicMaterial({ color: 0xFF0000 })
   );
-  mesh.name = 'CUBE_1'; // assign a name to our mesh
+  // assign a unique name to our mesh to be able to query it later
+  mesh.name = 'CUBE_1';
   scene.add(mesh);
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -71,7 +74,7 @@ $$$
 
 ```javascript
 $$$
-.find('Cube_1')
+.find('Cube_1') // the unique identifier we assigned to our mesh
 .exists(); // true
 ```
 
