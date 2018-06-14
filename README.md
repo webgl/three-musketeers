@@ -10,9 +10,12 @@ This module serves as an intuitive tool to introspect, debug and test any THREE.
 
 [GitHub](https://github.com/webgl/three-musketeers) &mdash;
 [Documentation](https://webgl.github.io/three-musketeers) &mdash;
-[Examples](https://github.com/webgl/three-musketeers/tree/master/src/__example__)
+[Examples](https://github.com/webgl/three-musketeers/tree/master/src/__example__) &mdash;
+[Demo](https://www.youtube.com/watch?v=CgBypTWd5i8)
 
 ## Demo
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/CgBypTWd5i8/0.jpg)](https://www.youtube.com/watch?v=CgBypTWd5i8)
 
 ## Usage
 
