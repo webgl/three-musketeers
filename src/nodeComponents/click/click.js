@@ -1,5 +1,6 @@
 // dependencies
 import _ from 'lodash';
+import { Vector3 } from 'three';
 
 // local dependencies
 import store from '../../store/store';
@@ -25,7 +26,7 @@ export default (node) =>
    * .click(true); // you can also pass in `debug` as `true` to see the cursor
    */
     (debug = false) => {
-    const position = node.getWorldPosition();
+    const position = node.getWorldPosition(new Vector3());
     const canvas = store.get(C.RENDERER).domElement;
 
     const screenSpace = worldToScreenSpace(

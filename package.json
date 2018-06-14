@@ -1,6 +1,6 @@
 {
   "name": "three-musketeers",
-  "version": "0.9.12",
+  "version": "0.9.13",
   "main": "./build/three-musketeers.min.js",
   "author": "Farhad Ghayour <me@farhadg.com>",
   "keywords": [
