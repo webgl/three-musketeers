@@ -4,7 +4,7 @@ import _ from 'lodash';
 // local dependencies
 import store from './store/store';
 import C from './constants/constants';
-import { updateMousePosition } from './util/helpers';
+import { updateMousePosition, print } from './util/helpers';
 import * as rootComponents from './rootComponents/rootComponents';
 
 /**
@@ -43,6 +43,7 @@ import * as rootComponents from './rootComponents/rootComponents';
  * $$$.getResource('camera'); // returns the camera that's attached to the `scene`
  */
 export default function(config) {
+  print(C.VERSION);
   store.reset();
 
   const root = _.assign(rootComponents, {

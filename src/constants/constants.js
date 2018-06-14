@@ -1,7 +1,9 @@
 // values starting with _ are intended to be private (e.g. _debug)
 export default {
   // name
-  NAME: 'three-musketeers',
+  NAME: process.env.PACKAGE_NAME,
+  // version,
+  VERSION: process.env.PACKAGE_VERSION,
   // events
   CLICK: 'click',
   MOUSE_MOVE: 'mousemove',
