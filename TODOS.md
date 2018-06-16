@@ -1,5 +1,7 @@
 - Update documentation for better module encapsulation
 - Remove store from helpers and expose helpers to be used externally and remove store
+- Functionality to pick/select faces
+- Functionality to describe which portions of the geometry and face to be clicked on (e.g. 'top-left')
 - Update all tests to be able to do a single `beforeEach` globally rather than within each test
 - More rigorous coordinate transformations testing within the `utils`
 - Add node hover functionality
