@@ -31,16 +31,21 @@ Lastly, we simply pass the necessary resources to the musketeers instance and at
 
 ```javascript
 // sample application
+import * as THREE from 'three';
 import musketeers from 'three-musketeers';
 
 init();
 
 function init() {
   const { innerWidth, innerHeight } = window;
+  const scene = new THREE.Scene();
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(innerWidth, innerHeight);
+  document.body.appendChild(renderer.domElement);
+
   const camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.01, 10);
   camera.position.z = 1;
-
-  const scene = new THREE.Scene();
 
   const mesh = new THREE.Mesh(
     new THREE.BoxGeometry(0.2, 0.2, 0.2),
@@ -50,18 +55,10 @@ function init() {
   mesh.name = 'CUBE_1';
   scene.add(mesh);
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setSize(innerWidth, innerHeight);
-  document.body.appendChild(renderer.domElement);
-
   renderer.render(scene, camera);
 
   // attach $$$ to the window for browser debugging
-  window.$$$ = musketeers({
-    renderer,
-    scene,
-    camera
-  });
+  window.$$$ = musketeers({ renderer, scene, camera });
 }
 ```
 

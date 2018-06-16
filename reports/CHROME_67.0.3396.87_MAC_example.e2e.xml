@@ -5,9 +5,9 @@
 
   <testsuite name="example.e2e"
     errors="0" failures="0" hostname="" id="" package="example.e2e" skipped="0"
-    tests="5" time="5.410" timestamp="Thu, 14 Jun 2018 20:40:44 GMT">
+    tests="5" time="6.462" timestamp="Sat, 16 Jun 2018 00:11:13 GMT">
   
-    <testcase name="25 boxes exist" classname="example.e2e" time="2.934" assertions="1">
+    <testcase name="25 boxes exist" classname="example.e2e" time="3.765" assertions="1">
 
     
     </testcase>
@@ -17,7 +17,7 @@
     
     </testcase>
   
-    <testcase name="All boxes are toggled to &#34;isSelected&#34; being &#34;false&#34; after being clicked" classname="example.e2e" time="0.9080" assertions="1">
+    <testcase name="All boxes are toggled to &#34;isSelected&#34; being &#34;false&#34; after being clicked" classname="example.e2e" time="1.128" assertions="1">
 
     
     </testcase>
@@ -27,7 +27,7 @@
     
     </testcase>
   
-    <testcase name="All selected boxes scale down to original scale when they are clicked" classname="example.e2e" time="0.5230" assertions="1">
+    <testcase name="All selected boxes scale down to original scale when they are clicked" classname="example.e2e" time="0.5240" assertions="1">
 
     
     </testcase>

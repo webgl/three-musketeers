@@ -1,4 +1,5 @@
 - Update documentation for better module encapsulation
+- Remove store from helpers and expose helpers to be used externally and remove store
 - Update all tests to be able to do a single `beforeEach` globally rather than within each test
 - More rigorous coordinate transformations testing within the `utils`
 - Add node hover functionality

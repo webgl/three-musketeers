@@ -2,6 +2,7 @@
 import _ from 'lodash';
 import * as THREE from 'three';
 import musketeers from '..';
+import { screenToClipSpace } from '../util/helpers';
 import './main.css';
 
 window.THREE = THREE;
@@ -26,14 +27,14 @@ function init() {
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0xDDDDDD);
 
-  camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
-  camera.position.set(0, 0, 500);
-  camera.lookAt(new THREE.Vector3());
-
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(dpi);
   renderer.setSize(width, height);
   document.body.appendChild(renderer.domElement);
+
+  camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+  camera.position.set(0, 0, 500);
+  camera.lookAt(new THREE.Vector3());
 
   controls = new THREE.OrbitControls(camera, renderer.domElement);
   raycaster = new THREE.Raycaster();
@@ -67,7 +68,7 @@ function onWindowResize() {
 
 function onDocumentMouseDown(e) {
   e.preventDefault();
-  const coords = screenToClipSpace(e.clientX, e.clientY);
+  const coords = screenToClipSpace(e.clientX, e.clientY, width, height);
   mouse.set(coords.x, coords.y);
   raycaster.setFromCamera(mouse, camera);
 
@@ -77,13 +78,6 @@ function onDocumentMouseDown(e) {
     intersect.object.scale.set(scaleUpdate, scaleUpdate, scaleUpdate);
     intersect.object.isSelected = !intersect.object.isSelected;
   }
-}
-
-function screenToClipSpace(x, y) {
-  return {
-    x: (x / width) * 2 - 1,
-    y: -(y / height) * 2 + 1
-  };
 }
 
 function render(t) {
