@@ -25,14 +25,18 @@ export default node =>
    * .find('Cube_1')
    * .click(true); // you can also pass in `debug` as `true` to see the cursor
    */
-  (debug = false) => {
+    (debug = false) => {
     // Find the centre point of the 3D node
     node.updateMatrixWorld();
-    const box = new THREE.Box3().setFromObject(node);
-    const position = box.getCenter(new THREE.Vector3());
-    position.applyMatrix4(node.matrixWorld);
-    const canvas = store.get(C.RENDERER).domElement;
+    const position = node.getWorldPosition();
 
+    if (!position.x && !position.y) {
+      const box = new THREE.Box3().setFromObject(node);
+      box.getCenter(new THREE.Vector3());
+      position.applyMatrix4(node.matrixWorld);
+    }
+
+    const canvas = store.get(C.RENDERER).domElement;
     const screenSpace = worldToScreenSpace(position.x, position.y, position.z, canvas.clientWidth, canvas.clientHeight);
 
     const offset = {
