@@ -54,3 +54,11 @@ export function addBoxToScene(instance, name = '') {
   instance.getResource(C.SCENE).add(mesh);
   return mesh;
 }
+
+export function createCanvas(info) {
+  const size = 1000;
+  const canvas = document.createElement('canvas');
+  canvas.width = info ? info.width : size;
+  canvas.height = info ? info.height : size;
+  return canvas;
+}

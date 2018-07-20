@@ -68,7 +68,7 @@ function onWindowResize() {
 
 function onDocumentMouseDown(e) {
   e.preventDefault();
-  const coords = screenToClipSpace(e.clientX, e.clientY, width, height);
+  const coords = screenToClipSpace(e.clientX, e.clientY, renderer.domElement);
   mouse.set(coords.x, coords.y);
   raycaster.setFromCamera(mouse, camera);
 

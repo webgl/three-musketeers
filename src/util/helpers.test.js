@@ -10,7 +10,8 @@ import {
   initMocks,
   createThreeResources,
   addBoxToScene,
-  addBoxesToScene
+  addBoxesToScene,
+  createCanvas
 } from './testUtils';
 
 beforeEach(initMocks);
@@ -173,10 +174,10 @@ describe('clipToScreenSpace', () => {
   });
 
   test('accurately converts clip to clip space', () => {
-    const size = 1000;
-    expect(helpers.clipToScreenSpace(-1, -1, size, size)).toEqual({ x: 0, y: 1000 });
-    expect(helpers.clipToScreenSpace(0, 0, size, size)).toEqual({ x: 500, y: 500 });
-    expect(helpers.clipToScreenSpace(1, 1, size, size)).toEqual({ x: 1000, y: 0 });
+    const canvas = createCanvas();
+    expect(helpers.clipToScreenSpace(-1, -1, canvas)).toEqual({ x: 0, y: 1000 });
+    expect(helpers.clipToScreenSpace(0, 0, canvas)).toEqual({ x: 500, y: 500 });
+    expect(helpers.clipToScreenSpace(1, 1, canvas)).toEqual({ x: 1000, y: 0 });
   });
 
 });
@@ -188,10 +189,10 @@ describe('screenToClipSpace', () => {
   });
 
   test('accurately converts screen to clip coords', () => {
-    const size = 1000;
-    expect(helpers.screenToClipSpace(0, 0, size, size)).toEqual({ x: -1, y: 1 });
-    expect(helpers.screenToClipSpace(500, 500, size, size)).toEqual({ x: 0, y: 0 });
-    expect(helpers.screenToClipSpace(1000, 1000, size, size)).toEqual({ x: 1, y: -1 });
+    const canvas = createCanvas();
+    expect(helpers.screenToClipSpace(0, 0, canvas)).toEqual({ x: -1, y: 1 });
+    expect(helpers.screenToClipSpace(500, 500, canvas)).toEqual({ x: 0, y: 0 });
+    expect(helpers.screenToClipSpace(1000, 1000, canvas)).toEqual({ x: 1, y: -1 });
   });
 
 });

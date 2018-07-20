@@ -6,7 +6,7 @@ import * as THREE from 'three';
 import store from '../../store/store';
 import C from '../../constants/constants';
 import { simulate } from '../../rootComponents/rootComponents';
-import { getCallbackID, worldToScreenSpace } from '../../util/helpers';
+import { getCallbackID, worldToScreenSpace, getNodePosition } from '../../util/helpers';
 
 export default (node) =>
   /**
@@ -26,33 +26,13 @@ export default (node) =>
    * .click(true); // you can also pass in `debug` as `true` to see the cursor
    */
     (debug = false) => {
-    // Find the centre point of the 3D node
-    let position = node.getWorldPosition();
-
-    if (position.x === 0 && position.y === 0 && position.z === 0) {
-      position = new THREE.Box3()
-        .setFromObject(node)
-        .getCenter(new THREE.Vector3())
-        .applyMatrix4(node.matrixWorld);
-    }
-
+    const position = getNodePosition(node);
     const canvas = store.get(C.RENDERER).domElement;
-    const screenSpace = worldToScreenSpace(
-      position.x,
-      position.y,
-      position.z,
-      canvas.clientWidth,
-      canvas.clientHeight
-    );
-
-    const offset = {
-      left: canvas.getBoundingClientRect().left + window.scrollX,
-      top: canvas.getBoundingClientRect().top + window.scrollY
-    };
+    const screenSpace = worldToScreenSpace(position.x, position.y, position.z, canvas);
 
     const eventData = {
-      clientX: screenSpace.x + offset.left,
-      clientY: screenSpace.y + offset.top
+      clientX: screenSpace.x,
+      clientY: screenSpace.y
     };
 
     simulate(C.MOUSE_MOVE, eventData, debug);

@@ -83,9 +83,9 @@ export const resources = [
 ];
 
 // world -> clip -> screen
-export function worldToScreenSpace(x, y, z, width, height) {
-  const clipSpace = worldToClipSpace(x, y, z, width, height);
-  return clipToScreenSpace(clipSpace.x, clipSpace.y, width, height);
+export function worldToScreenSpace(x, y, z, canvas) {
+  const clipSpace = worldToClipSpace(x, y, z);
+  return clipToScreenSpace(clipSpace.x, clipSpace.y, canvas);
 }
 
 // world -> clip - screen
@@ -99,19 +99,50 @@ export function worldToClipSpace(x, y, z) {
 }
 
 // world - clip -> screen
-export function clipToScreenSpace(x, y, width, height) {
-  const halfWidth = width * 0.5;
-  const halfHeight = height * 0.5;
+export function clipToScreenSpace(x, y, canvas) {
+  const halfWidth = canvas.clientWidth * 0.5;
+  const halfHeight = canvas.clientHeight * 0.5;
+
+  // If canvas doesn't fit the screen then we should take into account its offset
+  const offset = getCanvasOffset(canvas);
+
   return {
-    x: x * halfWidth + halfWidth,
-    y: -(y * halfHeight) + halfHeight
+    x: x * halfWidth + halfWidth + offset.left,
+    y: -(y * halfHeight) + halfHeight + offset.top
   };
 }
 
 // world - clip <- screen
-export function screenToClipSpace(x, y, width, height) {
+export function screenToClipSpace(x, y, canvas) {
+  // If canvas doesn't fit the screen then we should take into account its offset
+  const offset = getCanvasOffset(canvas);
+
   return {
-    x: (x / width) * 2 - 1,
-    y: -(y / height) * 2 + 1
+    x: (x / canvas.clientWidth) * 2 - 1 - offset.left,
+    y: -(y / canvas.clientHeight) * 2 + 1 - offset.top
   };
+}
+
+function getCanvasOffset(canvas) {
+  const canvasInfo = canvas.getBoundingClientRect();
+
+  return {
+    left: canvasInfo.left + window.scrollX,
+    top: canvasInfo.top + window.scrollY
+  };
+}
+
+export function getNodePosition(node) {
+  let position = node.getWorldPosition();
+
+  // Sometimes `getWorldPosition` retrieves (x, y, z) = (0, 0, 0) coordinates
+  if (position.x === 0 && position.y === 0 && position.z === 0) {
+    // Find the centre point of the 3D node
+    return new THREE.Box3()
+      .setFromObject(node)
+      .getCenter(new THREE.Vector3())
+      .applyMatrix4(node.matrixWorld);
+  }
+
+  return position;
 }

@@ -37,8 +37,7 @@ export default function(event, debug = false, recursive = true) {
   const coords = screenToClipSpace(
     event.clientX,
     event.clientY,
-    canvas.clientWidth,
-    canvas.clientHeight
+    canvas
   );
   raycaster.setFromCamera(coords, camera);
   return raycaster.intersectObject(scene, recursive);
