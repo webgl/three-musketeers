@@ -133,7 +133,7 @@ function getCanvasOffset(canvas) {
 }
 
 export function getNodePosition(node) {
-  let position = node.getWorldPosition();
+  const position = node.getWorldPosition();
 
   // Sometimes `getWorldPosition` retrieves (x, y, z) = (0, 0, 0) coordinates
   if (position.x === 0 && position.y === 0 && position.z === 0) {
