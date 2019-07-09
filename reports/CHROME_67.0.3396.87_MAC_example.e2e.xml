@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="5">
+
+  <testsuite name="example.e2e"
+    errors="0" failures="0" hostname="" id="" package="example.e2e" skipped="0"
+    tests="5" time="5.880" timestamp="Tue, 19 Jun 2018 03:36:30 GMT">
+  
+    <testcase name="25 boxes exist" classname="example.e2e" time="3.660" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="All boxes are toggled to &#34;isSelected&#34; being &#34;true&#34; after being clicked" classname="example.e2e" time="0.5270" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="All boxes are toggled to &#34;isSelected&#34; being &#34;false&#34; after being clicked" classname="example.e2e" time="0.6560" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="All unselected boxes scale up when they are clicked" classname="example.e2e" time="0.5160" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="All selected boxes scale down to original scale when they are clicked" classname="example.e2e" time="0.5210" assertions="1">
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

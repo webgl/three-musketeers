@@ -1,0 +1,11 @@
+- Update documentation for better module encapsulation
+- Remove store from helpers and expose helpers to be used externally and remove store
+- Functionality to pick/select faces, as currently all clicks target the center of nodes
+- Functionality to describe which portions of the geometry and face to be clicked on (e.g. 'top-left')
+- Update all tests to be able to do a single `beforeEach` globally rather than within each test
+- More rigorous coordinate transformations testing within the `utils`
+- Add node hover functionality
+- Add node drag functionality
+- Add boundary box visuals when selecting an item (e.g. DOM inspector)
+- Tree representation of scene
+- Mimic DOM debugging tools within a chrome extension

@@ -1,0 +1,132 @@
+{
+  "name": "three-musketeers",
+  "version": "0.10.0",
+  "main": "./build/three-musketeers.min.js",
+  "author": "Farhad Ghayour <me@farhadg.com>",
+  "keywords": [
+    "three-musketeers",
+    "three",
+    "threejs",
+    "three.js",
+    "webgl",
+    "unit",
+    "testing",
+    "e2e",
+    "automated",
+    "nightwatch"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webgl/three-musketeers.git"
+  },
+  "bugs": {
+    "url": "https://github.com/webgl/three-musketeers/issues"
+  },
+  "homepage": "https://github.com/webgl/three-musketeers#readme",
+  "license": "MIT",
+  "scripts": {
+    "start": "node scripts/start.js",
+    "test": "node scripts/test.js --env=jsdom",
+    "build": "npm run docs && npm run components && node scripts/build.js",
+    "docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose",
+    "components": "node scripts/updateComponents.js",
+    "selenium": "java -jar ./node_modules/selenium-server-standalone-jar/jar/selenium-server-standalone-3.4.0.jar",
+    "test:e2e": "node ./node_modules/.bin/nightwatch"
+  },
+  "dependencies": {
+    "@tweenjs/tween.js": "^17.2.0",
+    "autoprefixer": "7.1.6",
+    "babel-core": "6.26.0",
+    "babel-eslint": "7.2.3",
+    "babel-jest": "20.0.3",
+    "babel-loader": "7.1.2",
+    "babel-preset-react-app": "^3.1.1",
+    "babel-runtime": "6.26.0",
+    "case-sensitive-paths-webpack-plugin": "2.1.1",
+    "chalk": "1.1.3",
+    "css-loader": "0.28.7",
+    "docdash": "^0.4.0",
+    "dotenv": "4.0.0",
+    "dotenv-expand": "4.2.0",
+    "eslint": "4.10.0",
+    "eslint-config-react-app": "^2.1.0",
+    "eslint-loader": "1.9.0",
+    "eslint-plugin-flowtype": "2.39.1",
+    "eslint-plugin-import": "2.8.0",
+    "eslint-plugin-jsx-a11y": "5.1.1",
+    "eslint-plugin-react": "7.4.0",
+    "extract-text-webpack-plugin": "3.0.2",
+    "file-loader": "1.1.5",
+    "fs": "0.0.1-security",
+    "fs-extra": "3.0.1",
+    "html-webpack-plugin": "2.29.0",
+    "jest": "20.0.4",
+    "jsdoc": "^3.5.5",
+    "lodash": "^4.17.10",
+    "normalize.css": "^8.0.0",
+    "object-assign": "4.1.1",
+    "path": "^0.12.7",
+    "postcss-flexbugs-fixes": "3.2.0",
+    "postcss-loader": "2.0.8",
+    "promise": "8.0.1",
+    "raf": "3.4.0",
+    "react": "^16.3.2",
+    "react-dev-utils": "^5.0.1",
+    "react-dom": "^16.3.2",
+    "resolve": "1.6.0",
+    "style-loader": "0.19.0",
+    "sw-precache-webpack-plugin": "0.11.4",
+    "three": "^0.92.0",
+    "url-loader": "0.6.2",
+    "uuid": "^3.2.1",
+    "webpack": "3.8.1",
+    "webpack-dev-server": "2.9.4",
+    "webpack-manifest-plugin": "1.3.2",
+    "whatwg-fetch": "2.0.3"
+  },
+  "devDependencies": {
+    "chromedriver": "^2.38.0",
+    "geckodriver": "^1.11.0",
+    "nightwatch": "^0.9.20",
+    "selenium-server-standalone-jar": "3.4.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,mjs}"
+    ],
+    "setupFiles": [
+      "<rootDir>/config/polyfills.js"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/?(*.)(spec|test).{js,mjs}"
+    ],
+    "testEnvironment": "node",
+    "testURL": "http://localhost",
+    "transform": {
+      "^.+\\.(js|mjs)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "^(?!.*\\.(js|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|mjs)$"
+    ],
+    "moduleNameMapper": {
+      "^react-native$": "react-native-web"
+    },
+    "moduleFileExtensions": [
+      "web.js",
+      "js",
+      "json",
+      "node",
+      "mjs"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  }
+}
