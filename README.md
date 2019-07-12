@@ -46,6 +46,7 @@ function init() {
 
   const camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.01, 10);
   camera.position.z = 1;
+  scene.add(camera);
 
   const mesh = new THREE.Mesh(
     new THREE.BoxGeometry(0.2, 0.2, 0.2),
