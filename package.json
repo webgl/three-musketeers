@@ -3,6 +3,15 @@
   "version": "0.11.0",
   "main": "./build/three-musketeers.min.js",
   "author": "Farhad Ghayour <me@farhadg.com>",
+  "scripts": {
+    "start": "node scripts/start.js",
+    "test": "node scripts/test.js --env=jsdom",
+    "build": "npm run docs && npm run components && node scripts/build.js",
+    "docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose",
+    "components": "node scripts/updateComponents.js",
+    "selenium": "java -jar ./node_modules/selenium-server-standalone-jar/jar/selenium-server-standalone-3.4.0.jar",
+    "test:e2e": "node ./node_modules/.bin/nightwatch"
+  },
   "keywords": [
     "three-musketeers",
     "three",
@@ -24,15 +33,6 @@
   },
   "homepage": "https://github.com/webgl/three-musketeers#readme",
   "license": "MIT",
-  "scripts": {
-    "start": "node scripts/start.js",
-    "test": "node scripts/test.js --env=jsdom",
-    "build": "npm run docs && npm run components && node scripts/build.js",
-    "docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose",
-    "components": "node scripts/updateComponents.js",
-    "selenium": "java -jar ./node_modules/selenium-server-standalone-jar/jar/selenium-server-standalone-3.4.0.jar",
-    "test:e2e": "node ./node_modules/.bin/nightwatch"
-  },
   "dependencies": {
     "@tweenjs/tween.js": "^17.2.0",
     "autoprefixer": "7.1.6",

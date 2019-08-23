@@ -1,6 +1,13 @@
 // dependencies
-import _ from 'lodash';
 import * as THREE from 'three';
+import assign from 'lodash/assign';
+import mapValues from 'lodash/mapValues';
+import join from 'lodash/join';
+import isFunction from 'lodash/isFunction';
+import every from 'lodash/every';
+import isString from 'lodash/isString';
+import isEmpty from 'lodash/isEmpty';
+import each from 'lodash/each';
 
 // local dependencies
 import store from '../store/store';
@@ -8,16 +15,16 @@ import C from '../constants/constants';
 import * as nodeComponents from '../nodeComponents/nodeComponents';
 
 export function attachNodeComponents(node) {
-  return _.assign(node, _.mapValues(nodeComponents, (cb) => cb(node)));
+  return assign(node, mapValues(nodeComponents, (cb) => cb(node)));
 }
 
 export function getID(node = {}, ...others) {
   const id = node.name || node.uuid;
-  return id && _.join([id, ...others], ':');
+  return id && join([id, ...others], ':');
 }
 
 export function getCallbackID(node, e) {
-  return _.join([
+  return join([
     C.CALLBACK_STORE,
     getID(node, e)
   ], '.');
@@ -36,12 +43,12 @@ export function findBy(name, recursive, root = store.get(C.SCENE)) {
 
     let matches = false;
 
-    if (_.isFunction(name)) {
+    if (isFunction(name)) {
       matches = name(node);
     }
-    else if (_.every([
-      _.isString(name),
-      !_.isEmpty(name)
+    else if (every([
+      isString(name),
+      !isEmpty(name)
     ])) {
       matches = node.name === name;
     }
@@ -51,7 +58,7 @@ export function findBy(name, recursive, root = store.get(C.SCENE)) {
     }
 
     if (recursive || !nodes.length) {
-      _.each(node.children, (child) => {
+      each(node.children, (child) => {
         traverse(child);
       });
     }
@@ -134,9 +141,10 @@ function getCanvasOffset(canvas) {
 
 export function getNodePosition(node) {
   const position = node.getWorldPosition();
+  const { x, y, z } = position;
 
   // Sometimes `getWorldPosition` retrieves (x, y, z) = (0, 0, 0) coordinates
-  if (position.x === 0 && position.y === 0 && position.z === 0) {
+  if (x === 0 && y === 0 && z === 0) {
     // Find the centre point of the 3D node
     return new THREE.Box3()
       .setFromObject(node)
